@@ -19,7 +19,7 @@ namespace proyecto
         this.nombre = nombre;
         this.sistemaOperativo = sistemaOperativo;
         this.laboratorio = laboratorio;
-        Modelo = modelo;
+        this.Modelo = modelo;
       }
 
     
