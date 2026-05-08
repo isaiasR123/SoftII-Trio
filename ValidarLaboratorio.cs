@@ -7,6 +7,9 @@ namespace proyecto
 {
     public class ValidarLaboratorio
     {
+       public void ValidarNombre(nombre){
+       
+       }
         
     }
 }
