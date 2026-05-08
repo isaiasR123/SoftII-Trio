@@ -8,6 +8,9 @@ class Laboratorio
     public Laboratorio(string nombre, string ubicacion){
       ValidarLaboratorio.ValidarNombre(nombre);
         ValidarLaboratorio.ValidarUbicacion(ubicacion);
+
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
     }
 
 }
