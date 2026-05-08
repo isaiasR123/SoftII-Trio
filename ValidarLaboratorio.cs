@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace proyecto
 {
-    public class ValidarLaboratorio
+    public  class ValidarLaboratorio
     {
-       public void ValidarNombre(nombre){
+       public static void ValidarNombre(string nombre){
         if (string.IsNullOrWhiteSpace(nombre)){
         throw new  Exception("El nombre no puede estar vacio");     
         } 
        }
 
-        public void  ValidarUbicacion(ubicacion){
+        public static void  ValidarUbicacion(string ubicacion){
             if(string.IsNullOrWhiteSpace(ubicacion){
                 throw new Exception("La ubicacion no puede estar vacio");
             }
