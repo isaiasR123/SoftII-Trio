@@ -16,9 +16,9 @@ namespace proyecto
 
        public Computadora(string nombre, string sistemaOperataivo, Laboratorio laboratorio, ModeloPc modelo)
       {
-        nombre = nombre;
-        sistemaOperataivo = sistemaOperataivo;
-        laboratorio = laboratorio;
+        this.nombre = nombre;
+        this.sistemaOperataivo = sistemaOperataivo;
+        this.laboratorio = laboratorio;
         Modelo = modelo;
       }
 
