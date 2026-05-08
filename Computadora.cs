@@ -14,10 +14,10 @@ namespace proyecto
 
        public ModeloPc Modelo{get; set;}
 
-       public Computadora(string nombre, string sistemaOperataivo, Laboratorio laboratorio, ModeloPc modelo)
+       public Computadora(string nombre, string sistemaOperativo, Laboratorio laboratorio, ModeloPc modelo)
       {
         this.nombre = nombre;
-        this.sistemaOperataivo = sistemaOperataivo;
+        this.sistemaOperativo = sistemaOperativo;
         this.laboratorio = laboratorio;
         Modelo = modelo;
       }
