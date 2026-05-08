@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace proyecto
 {
-    public  class ValidarLaboratorio
+    public static class ValidarLaboratorio
     {
-       public static void ValidarNombre(string nombre){
+        public static void ValidarNombre(string nombre){
         if (string.IsNullOrWhiteSpace(nombre)){
         throw new  Exception("El nombre no puede estar vacio");     
         } 
