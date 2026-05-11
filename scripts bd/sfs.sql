@@ -12,7 +12,7 @@ DETERMINISTIC
 BEGIN
     DECLARE estado VARCHAR(20);
     
-    IF unconectada = TRUE THEN  -- Cambié FALSE por TRUE (lógica más clara)
+    IF unconectada = TRUE THEN 
         SET estado = 'DESCONECTADA';
     ELSEIF untemperatura > 80 THEN
         SET estado = 'CRÍTICA';
