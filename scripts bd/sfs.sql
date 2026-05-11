@@ -1,5 +1,5 @@
 DELIMITER $$
-    
+
 DROP FUNCTION IF EXISTS CalcularEstado $$
 
 CREATE FUNCTION CalcularEstado(
@@ -12,13 +12,13 @@ DETERMINISTIC
 BEGIN
     DECLARE estado VARCHAR(20);
     
-    IF conectada = FALSE THEN
+    IF unconectada = TRUE THEN  -- Cambié FALSE por TRUE (lógica más clara)
         SET estado = 'DESCONECTADA';
-    ELSEIF temperatura > 80 THEN
+    ELSEIF untemperatura > 80 THEN
         SET estado = 'CRÍTICA';
-    ELSEIF temperatura > 60 THEN
+    ELSEIF untemperatura > 60 THEN
         SET estado = 'ALERTA';
-    ELSEIF temperatura > 40 THEN
+    ELSEIF untemperatura > 40 THEN
         SET estado = 'NORMAL';
     ELSE
         SET estado = 'BAJA';
@@ -26,7 +26,6 @@ BEGIN
     
     RETURN estado;
 END$$
-
 
 DROP FUNCTION IF EXISTS PromedioTemperatura $$
 
@@ -39,7 +38,7 @@ RETURNS DECIMAL(5,2)
 READS SQL DATA
 DETERMINISTIC
 BEGIN
-    DECLARE promedio DECIMAL(5,2);
+    DECLARE promedio DECIMAL(5,2) DEFAULT 0.00;
     
     SELECT AVG(temperatura)
     INTO promedio
@@ -47,12 +46,8 @@ BEGIN
     WHERE idComputadora = unidComputadora
     AND Fechahora BETWEEN unfechaInicio AND unfechaFin;
     
-  
-    IF promedio IS NULL THEN
-        SET promedio = 0.00;
-    END IF;
+    RETURN COALESCE(promedio, 0.00);  -- Más elegante que el IF
     
-    RETURN promedio;
 END$$
 
 DELIMITER ;
