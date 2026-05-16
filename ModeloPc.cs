@@ -23,6 +23,10 @@ public class ModeloPc
     public ModeloPc(string marca, string modelo, int procesador, int ram)
 
     {
+        ValidarModeloPC.ValidarMarca(marca);
+        ValidarModeloPC.ValidarModelo(modelo);
+        ValidarModeloPC.ValidarProcesador(procesador);
+        ValidarModeloPC.ValidarRam(ram);
 
         marca = marca;
 
