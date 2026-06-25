@@ -1,9 +1,9 @@
 namespace proyecto;
 public class ModeloPc
 {
-    private string marca { get; set; }
+    private string? marca { get; set; }
 
-    private string modelo { get; set; }
+    private string? modelo { get; set; }
 
     private int procesador { get; set; }
 
@@ -11,7 +11,7 @@ public class ModeloPc
 
     private int temperatura { get; set; }
 
-    private string conectada { get; set; }
+    private string? conectada { get; set; }
 
     private DateTime fechahora { get; set; }
 

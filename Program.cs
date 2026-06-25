@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+
 namespace proyecto;
 
 class Program
@@ -11,11 +8,29 @@ class Program
     {
         try
         {
-            Laboratorio lab = new Laboratorio("Laboratorio A","Primer Piso");
+            Conexion db = new Conexion();
+
+            using (MySqlConnection conn = db.ObtenerConexion())
+            {
+                Console.WriteLine("Conectado a MySQL correctamente");
+
+                string sql = "INSERT INTO laboratorio(nombre, ubicacion) VALUES (@nombre, @ubicacion)";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@nombre", "Laboratorio A");
+                cmd.Parameters.AddWithValue("@ubicacion", "Primer Piso");
+
+                cmd.ExecuteNonQuery();
+
+                Console.WriteLine("Laboratorio guardado");
+            }
+
+            Laboratorio lab = new Laboratorio("Laboratorio A", "Primer Piso");
 
             ModeloPc modelo = new ModeloPc("Dell", "OptiPlex 7090", 75, 16);
 
-            Computadora pc = new Computadora("PC-001","Windows 11",lab,modelo);
+            Computadora pc = new Computadora("PC-001", "Windows 11", lab, modelo);
 
             Console.WriteLine("Sistema funcionando");
             Console.WriteLine(pc.nombre);

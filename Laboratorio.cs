@@ -13,4 +13,5 @@ class Laboratorio
         this.ubicacion = ubicacion;
     }
 
+   
 }
