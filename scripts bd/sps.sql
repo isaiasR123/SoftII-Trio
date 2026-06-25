@@ -1,6 +1,8 @@
+-- Active: 1779910014312@@127.0.0.1@3306@5to_Monitoreo
+DROP PROCEDURE IF EXISTS sp_registrar_laboratorio ;
+DROP PROCEDURE IF EXISTS sp_registrar_modelo_pc ;
+DROP PROCEDURE IF EXISTS sp_registrar_computadora ;
 DELIMITER $$
-
-DROP PROCEDURE IF EXISTS sp_registrar_laboratorio $$
 
 CREATE PROCEDURE sp_registrar_laboratorio(
     unidLaboratorio INT,
@@ -11,8 +13,6 @@ BEGIN
     INSERT INTO Laboratorio(idLaboratorio, nombre, ubicacion)
     VALUES(unidLaboratorio, unnombre, unubicacion);
 END $$
-
-DROP PROCEDURE IF EXISTS sp_registrar_modelo_pc $$
 
 CREATE PROCEDURE sp_registrar_modelo_pc(
     unidModelo INT,
@@ -26,8 +26,6 @@ BEGIN
     VALUES(unidModelo, unmarca, unmodelo, unprocesador, unram);
 END $$
 
-DROP PROCEDURE IF EXISTS sp_registrar_computadora $$
-
 CREATE PROCEDURE sp_registrar_computadora(
     unidLaboratorio INT,
     unidModelo INT,
@@ -35,18 +33,8 @@ CREATE PROCEDURE sp_registrar_computadora(
     unnombre_equipo VARCHAR(45)
 )
 BEGIN
-    INSERT INTO Computadora(
-        idLaboratorio,
-        idModelo,
-        idComputadora,
-        nombre_equipo
-    )
-    VALUES(
-        unidLaboratorio,
-        unidModelo,
-        unidComputadora,
-        unnombre_equipo
-    );  
+    INSERT INTO Computadora(idLaboratorio,idModelo,idComputadora,nombre_equipo)
+    VALUES(unidLaboratorio,unidModelo,unidComputadora,unnombre_equipo);  
 END $$
 
 DELIMITER ;  

@@ -1,6 +1,7 @@
+-- Active: 1779910014312@@127.0.0.1@3306@5to_Monitoreo
+DROP FUNCTION IF EXISTS CalcularEstado ;
+DROP FUNCTION IF EXISTS PromedioTemperatura ;
 DELIMITER $$
-USE 5to_Mediciones $$
-DROP FUNCTION IF EXISTS CalcularEstado $$
 
 CREATE FUNCTION CalcularEstado(
     unIdComputadora INT
@@ -23,8 +24,6 @@ BEGIN
         ORDER BY Fechahora DESC
         LIMIT 1);
 END $$
-
-DROP FUNCTION IF EXISTS PromedioTemperatura $$
 
 CREATE FUNCTION PromedioTemperatura(
     unidComputadora INT,
