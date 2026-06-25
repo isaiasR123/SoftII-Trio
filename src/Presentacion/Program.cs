@@ -1,6 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-
-namespace proyecto;
+﻿namespace proyecto;
 
 class Program
 {

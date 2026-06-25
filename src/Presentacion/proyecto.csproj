@@ -11,4 +11,8 @@
     <PackageReference Include="MySql.Data" Version="9.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BiblioBack\BiblioBack.csproj" />
+  </ItemGroup>
+
 </Project>
