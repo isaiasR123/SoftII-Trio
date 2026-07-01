@@ -3,25 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace proyecto
+
+public class Computadora : activo 
 {
-     public class Computadora : activo
-    {
-       public string nombre {get; set;}
-       public string sistemaOperativo {get; set;}
+  public int Ram {get; set;}
 
-       public Laboratorio Laboratorio {get; set;}
+   public Computadora(string codigo,string marca,string modelo,int ram) : base (codigo,marca,modelo){
+     this.Ram = ram;
+   }
 
-       public ModeloPc Modelo{get; set;}
-
-       public Computadora(string nombre, string sistemaOperativo, Laboratorio laboratorio, ModeloPc modelo)
-      {
-        this.nombre = nombre;
-        this.sistemaOperativo = sistemaOperativo;
-        this.Laboratorio = laboratorio;
-        this.Modelo = modelo;
-      }
-
-    
-    }
+  public override void MostrarInformacion (){
+    Console.WriteLine("=====COMPUTADORA=====");
+    base.MostrarInformacion();
+    Console.WriteLine($"Ram: {ram} GB");
+  }
 }
