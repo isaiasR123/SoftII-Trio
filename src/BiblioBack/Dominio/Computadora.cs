@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace proyecto
 {
-     class Computadora
+     public class Computadora : activo
     {
        public string nombre {get; set;}
        public string sistemaOperativo {get; set;}
