@@ -1,8 +1,8 @@
 using MySql.Data.MySqlClient;
 
-namespace proyecto;
+namespace BiblioBack.Data;
 
-class Conexion
+public class Conexion
 {
     private string cadenaConexion =
         "Server=localhost;Database=5to_Monitoreo;Uid=root;Pwd=Trigg3rs!;";

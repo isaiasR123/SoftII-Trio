@@ -1,39 +1,22 @@
 namespace proyecto;
+
 public class ModeloPc
 {
-    private string? marca { get; set; }
-
-    private string? modelo { get; set; }
-
-    private int procesador { get; set; }
-
-    private int ram { get; set; }
-
-    private int temperatura { get; set; }
-
-    private string? conectada { get; set; }
-
-    private DateTime fechahora { get; set; }
-
-    private DateTime Hora { get; set; }
-
-    public ModeloPc() { }
-
+    public string Marca { get; set; }
+    public string Modelo { get; set; }
+    public int Procesador { get; set; }
+    public int Ram { get; set; }
 
     public ModeloPc(string marca, string modelo, int procesador, int ram)
-
     {
         ValidarModeloPc.ValidarMarca(marca);
         ValidarModeloPc.ValidarModelo(modelo);
         ValidarModeloPc.ValidarProcesador(procesador);
         ValidarModeloPc.ValidarRam(ram);
 
-        this.marca = marca;
-
-        this.modelo = modelo;
-
-        this.procesador = procesador;
-
-        this.ram = ram;
+        Marca = marca;
+        Modelo = modelo;
+        Procesador = procesador;
+        Ram = ram;
     }
 }

@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-
-public class Computadora : Activo 
+namespace BiblioBack.Dominio;
+public class Computadora : Activo , IActivo
 {
   public int Ram {get; set;}
 
-   public Computadora(string marca,string modelo,string codigo,int ram) : base (marca,modelo,codigo){
-    this.Ram = ram;
+   public Computadora(string marca, string modelo, string codigo, int ram) : base(marca, modelo, codigo)
+   {
+      this.Ram = ram;
    }
 
   public override void MostrarInformacion (){
