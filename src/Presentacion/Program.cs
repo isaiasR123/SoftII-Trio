@@ -1,51 +1,27 @@
-﻿using BiblioBack.Dominio;
-using MySql.Data.MySqlClient;
+﻿using BiblioBack.Data;
+using BiblioBack.Dominio;
 using proyecto;
-namespace BiblioBack.presentacion;
+
+namespace proyecto;
+
 class Program
 {
     static void Main(string[] args)
     {
         try
         {
-            Conexion db = new Conexion();
-
-            using (MySqlConnection conn = db.ObtenerConexion())
-            {
-                Console.WriteLine("Conectado a MySQL correctamente");
-
-                string sql = @"INSERT INTO laboratorio(nombre, ubicacion)
-                               VALUES(@nombre,@ubicacion)";
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                cmd.Parameters.AddWithValue("@nombre", "Laboratorio A");
-                cmd.Parameters.AddWithValue("@ubicacion", "Primer Piso");
-
-                cmd.ExecuteNonQuery();
-
-                Console.WriteLine("Laboratorio guardado");
-            }
-
+            // Crear el laboratorio
             Laboratorio lab = new Laboratorio("Laboratorio A", "Primer Piso");
 
-            ModeloPc modelo = new ModeloPc(
-                "Dell",
-                "OptiPlex 7090",
-                75,
-                16
-            );
+            // Guardarlo en la base de datos
+            LaboratorioRepositorio repo = new LaboratorioRepositorio();
+            repo.Guardar(lab);
 
-            Computadora pc = new Computadora(
-                "PC-001",
-                "Windows 11",
-                lab,
-                modelo
-            );
+            // Crear la computadora
+            Computadora pc = new Computadora("Dell", "OptiPlex 7090", "PC-001", 16);
 
+            Console.WriteLine("Sistema funcionando");
             pc.MostrarInformacion();
-
-            Console.WriteLine($"¿Está activa?: {pc.EstaActivo()}");
         }
         catch (Exception ex)
         {

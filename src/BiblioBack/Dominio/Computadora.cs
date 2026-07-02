@@ -1,5 +1,5 @@
 namespace BiblioBack.Dominio;
-public class Computadora : Activo , IActivo
+public class Computadora : Activo, IActivo
 {
   public int Ram {get; set;}
 
@@ -12,5 +12,10 @@ public class Computadora : Activo , IActivo
     Console.WriteLine("=====COMPUTADORA=====");
     base.MostrarInformacion();
     Console.WriteLine($"Ram: {Ram} GB");
+  }
+
+  public bool EstaActivo()
+  {
+    return true;
   }
 }

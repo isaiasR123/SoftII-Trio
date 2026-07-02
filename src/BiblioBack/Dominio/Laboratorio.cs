@@ -1,15 +1,12 @@
-namespace proyecto;
-
 public class Laboratorio
 {
-    public string nombre { get; set; }
-    public string ubicacion { get; set; }
+    public string Nombre { get; set; }
 
-    public Laboratorio(string nombre, string ubicacion){
-      ValidarLaboratorio.ValidarNombre(nombre);
-        ValidarLaboratorio.ValidarUbicacion(ubicacion);
+    public string Ubicacion { get; set; }
 
-        this.nombre = nombre;
-        this.ubicacion = ubicacion;
+    public Laboratorio(string nombre,string ubicacion)
+    {
+        Nombre = nombre;
+        Ubicacion = ubicacion;
     }
 }
