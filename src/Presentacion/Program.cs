@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using BiblioBack.Dominio;
+using MySql.Data.MySqlClient;
+using proyecto;
 namespace BiblioBack.presentacion;
 class Program
 {
