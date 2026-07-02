@@ -31,7 +31,7 @@ class Program
             Computadora pc = new Computadora("PC-001", "Windows 11", lab, modelo);
 
             Console.WriteLine("Sistema funcionando");
-            Console.WriteLine(pc.nombre);
+            pc.MostrarInformacion();
         }
         catch (Exception ex)
         {
