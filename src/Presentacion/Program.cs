@@ -1,5 +1,5 @@
-﻿namespace proyecto;
-
+﻿using MySql.Data.MySqlClient;
+namespace BiblioBack.presentacion;
 class Program
 {
     static void Main(string[] args)
@@ -12,7 +12,8 @@ class Program
             {
                 Console.WriteLine("Conectado a MySQL correctamente");
 
-                string sql = "INSERT INTO laboratorio(nombre, ubicacion) VALUES (@nombre, @ubicacion)";
+                string sql = @"INSERT INTO laboratorio(nombre, ubicacion)
+                               VALUES(@nombre,@ubicacion)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -26,12 +27,23 @@ class Program
 
             Laboratorio lab = new Laboratorio("Laboratorio A", "Primer Piso");
 
-            ModeloPc modelo = new ModeloPc("Dell", "OptiPlex 7090", 75, 16);
+            ModeloPc modelo = new ModeloPc(
+                "Dell",
+                "OptiPlex 7090",
+                75,
+                16
+            );
 
-            Computadora pc = new Computadora("PC-001", "Windows 11", lab, modelo);
+            Computadora pc = new Computadora(
+                "PC-001",
+                "Windows 11",
+                lab,
+                modelo
+            );
 
-            Console.WriteLine("Sistema funcionando");
             pc.MostrarInformacion();
+
+            Console.WriteLine($"¿Está activa?: {pc.EstaActivo()}");
         }
         catch (Exception ex)
         {
