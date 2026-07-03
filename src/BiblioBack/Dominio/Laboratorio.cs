@@ -6,6 +6,12 @@ public class Laboratorio
 
     public Laboratorio(string nombre,string ubicacion)
     {
+        if (string.IsNullOrWhiteSpace(nombre))
+        throw new Exception("El nombre es obligatorio.");
+
+        if (string.IsNullOrWhiteSpace(ubicacion))
+        throw new Exception("La ubicación es obligatoria.");
+
         Nombre = nombre;
         Ubicacion = ubicacion;
     }

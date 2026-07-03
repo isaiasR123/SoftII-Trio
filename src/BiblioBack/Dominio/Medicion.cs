@@ -32,7 +32,7 @@ namespace proyecto
 
         public void setRam(int ram)
         {
-            if(ram < 0 && ram > 100)
+            if(ram < 0 || ram > 100)
             {
                 throw new Exception ("Ram debe estar entre 0 y 100");
             }

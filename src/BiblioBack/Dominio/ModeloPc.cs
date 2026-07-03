@@ -9,11 +9,18 @@ public class ModeloPc
 
     public ModeloPc(string marca, string modelo, int procesador, int ram)
     {
-        ValidarModeloPc.ValidarMarca(marca);
-        ValidarModeloPc.ValidarModelo(modelo);
-        ValidarModeloPc.ValidarProcesador(procesador);
-        ValidarModeloPc.ValidarRam(ram);
+        if (string.IsNullOrWhiteSpace(marca))
+        throw new Exception("La marca es obligatoria.");
 
+        if (string.IsNullOrWhiteSpace(modelo))
+        throw new Exception("El modelo es obligatorio.");
+
+        if (procesador <= 0)
+        throw new Exception("El procesador debe ser mayor que cero.");
+
+        if (ram <= 0)
+        throw new Exception("La RAM debe ser mayor que cero.");
+        
         Marca = marca;
         Modelo = modelo;
         Procesador = procesador;

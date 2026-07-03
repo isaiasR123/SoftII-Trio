@@ -14,6 +14,9 @@ public class Impresora : Activo, IActivo
         bool color
     ) : base(marca, modelo, codigo)
     {
+        if(string.IsNullOrWhiteSpace(tipo))
+        throw new Exception("El tipo de impresora es obligatorio.");
+
         Tipo = tipo;
         Color = color;
     }

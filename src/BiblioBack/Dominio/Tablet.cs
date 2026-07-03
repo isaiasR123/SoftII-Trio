@@ -1,12 +1,12 @@
 using System;
 using BiblioBack.Dominio;
 
-public class Tabla : Activo, IActivo
+public class Tablet : Activo, IActivo
 {
     public int CantidadFilas { get; set; }
     public int CantidadColumnas { get; set; }
 
-    public Tabla(
+    public Tablet(
         string marca,
         string modelo,
         string codigo,
@@ -14,6 +14,12 @@ public class Tabla : Activo, IActivo
         int cantidadColumnas
     ) : base(marca, modelo, codigo)
     {
+        if (cantidadFilas <= 0)
+        throw new Exception("La cantidad de filas debe ser mayor que cero.");
+
+        if (cantidadColumnas <= 0)
+        throw new Exception("La cantidad de columnas debe ser mayor que cero.");
+
         CantidadFilas = cantidadFilas;
         CantidadColumnas = cantidadColumnas;
     }
