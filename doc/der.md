@@ -1,37 +1,38 @@
 ```mermaid
-classDiagram
-class Laboratorio{
-    - idLaboratorio: int
-    - nombre: varchar(45)
-    - ubicacinon: varchar(45)  
-}
+erDiagram
 
-class Modelo{
-    - idModelo: int
-    - marca: varchar(45)
-    - modelo: varchar(45)
-    - procesador: varchar(45)
-    - ram: int
-}
+    LABORATORIO {
+        INT idLaboratorio PK
+        VARCHAR nombre
+        VARCHAR ubicacion
+    }
 
-class Computadoras{
-    - idComputadora: int
-    - idLaboratorio: int 
-    - idModelo: int
-    - nombre_equipo: varchar(45)
-}
+    MODELO {
+        INT idModelo PK
+        VARCHAR marca
+        VARCHAR modelo
+        VARCHAR procesador
+        INT ram
+    }
 
-class Mediciones{
-    - idMedicion: int
-    - idComputadora: int
-    - CPU: int
-    - ram: int 
-    - temperatura: decimal
-    - conectada: boolean
-    - fechahora: datetime
-}
+    COMPUTADORA {
+        INT idComputadora PK
+        INT idLaboratorio FK
+        INT idModelo FK
+        VARCHAR nombre_equipo
+    }
 
-Laboratorio "1"--"*" Computadoras: A
-Modelo "1"--"*" Computadoras: A
-Computadoras"1"--"*"Mediciones: A
+    MEDICION {
+        INT idMedicion PK
+        INT idComputadora FK
+        INT CPU
+        INT ram
+        DECIMAL temperatura
+        BOOLEAN conectada
+        DATETIME fechaHora
+    }
+
+    LABORATORIO ||--o{ COMPUTADORA : tiene
+    MODELO ||--o{ COMPUTADORA : utiliza
+    COMPUTADORA ||--o{ MEDICION : registra
 ```
