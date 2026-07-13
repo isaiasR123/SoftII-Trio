@@ -1,5 +1,6 @@
 using System;
 using BiblioBack.Dominio;
+namespace BiblioBack.Dominio;
 
 public class Tablet : Activo, IActivo
 {

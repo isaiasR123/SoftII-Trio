@@ -1,4 +1,4 @@
-namespace proyecto;
+namespace BiblioBack.Dominio; 
 
 public class ModeloPc
 {

@@ -1,11 +1,11 @@
-﻿using BiblioBack.Dominio;
+﻿using BiblioBack.Data;
+using BiblioBack.Dominio;
 
 namespace proyecto;
-
 class Program
 {
-    static List<Activo> activos = new();
-    static List<Laboratorio> laboratorios = new();
+    static LaboratorioRepositorio laboratorioRepositorio = new();
+    static ComputadoraRepositorio computadoraRepositorio = new();
 
     static void Main(string[] args)
     {
@@ -19,10 +19,13 @@ class Program
             Console.WriteLine("1. Registrar laboratorio");
             Console.WriteLine("2. Registrar computadora");
             Console.WriteLine("3. Mostrar activos");
-            Console.WriteLine("4. Salir");
-            Console.Write("Seleccione una opción: ");
+            Console.WriteLine("4. Actualizar computadora");
+            Console.WriteLine("5. Eliminar computadora");
+            Console.WriteLine("6. Actualizar laboratorio");
+            Console.WriteLine("7. Eliminar laboratorio");
+            Console.WriteLine("8. Salir");
 
-            string opcion = Console.ReadLine();
+            string? opcion = Console.ReadLine();
 
             try
             {
@@ -41,6 +44,22 @@ class Program
                         break;
 
                     case "4":
+                        ActualizarComputadora();
+                        break;
+
+                    case "5":
+                        EliminarComputadora();
+                        break;
+
+                    case "6":
+                        ActualizarLaboratorio();
+                        break;
+
+                    case "7":
+                        EliminarLaboratorio();
+                        break;
+
+                    case "8":
                         salir = true;
                         break;
 
@@ -64,11 +83,11 @@ class Program
         string nombre = Console.ReadLine() ?? "";
 
         Console.Write("Ubicación: ");
-        string ubicacion = Console.ReadLine();
+        string ubicacion = Console.ReadLine() ?? "";
 
         Laboratorio laboratorio = new Laboratorio(nombre, ubicacion);
 
-        laboratorios.Add(laboratorio);
+        laboratorioRepositorio.Agregar(laboratorio);
 
         Console.WriteLine("Laboratorio registrado correctamente.");
         Console.ReadKey();
@@ -77,20 +96,20 @@ class Program
     static void RegistrarComputadora()
     {
         Console.Write("Marca: ");
-        string marca = Console.ReadLine();
+        string marca = Console.ReadLine() ?? "";
 
         Console.Write("Modelo: ");
-        string modelo = Console.ReadLine();
+        string modelo = Console.ReadLine() ?? "";
 
         Console.Write("Código: ");
-        string codigo = Console.ReadLine();
+        string codigo = Console.ReadLine() ?? "";
 
         Console.Write("RAM (GB): ");
         int.TryParse(Console.ReadLine(), out int ram);
 
         Computadora pc = new Computadora(marca, modelo, codigo, ram);
 
-        activos.Add(pc);
+        computadoraRepositorio.Agregar(pc);
 
         Console.WriteLine("Computadora registrada correctamente.");
         Console.ReadKey();
@@ -98,21 +117,65 @@ class Program
 
     static void MostrarActivos()
     {
-        Console.WriteLine("\n===== ACTIVOS REGISTRADOS =====");
+        Console.WriteLine("\n===== LABORATORIOS =====");
 
-        if (activos.Count == 0)
+        var laboratorios = laboratorioRepositorio.ObtenerTodos();
+
+        if (laboratorios.Count == 0)
         {
-            Console.WriteLine("No hay activos registrados.");
+            Console.WriteLine("No hay laboratorios registrados.");
         }
         else
         {
-            foreach (Activo activo in activos)
+            foreach (Laboratorio laboratorio in laboratorios)
             {
-                activo.MostrarInformacion();
+                Console.WriteLine($"Nombre: {laboratorio.Nombre}");
+                Console.WriteLine($"Ubicación: {laboratorio.Ubicacion}");
                 Console.WriteLine("----------------------------");
             }
         }
 
+        Console.WriteLine("\n===== COMPUTADORAS =====");
+
+        var computadoras = computadoraRepositorio.ObtenerTodas();
+
+        if (computadoras.Count == 0)
+        {
+            Console.WriteLine("No hay computadoras registradas.");
+        }
+        else
+        {
+            foreach (Computadora computadora in computadoras)
+            {
+                computadora.MostrarInformacion();
+                Console.WriteLine("----------------------------");
+            }
+        }
+
+        Console.ReadKey();
+    }
+
+    static void ActualizarComputadora()
+    {
+        Console.WriteLine("Función en desarrollo.");
+        Console.ReadKey();
+    }
+
+    static void EliminarComputadora()
+    {
+        Console.WriteLine("Función en desarrollo.");
+        Console.ReadKey();
+    }
+
+    static void ActualizarLaboratorio()
+    {
+        Console.WriteLine("Función en desarrollo.");
+        Console.ReadKey();
+    }
+
+    static void EliminarLaboratorio()
+    {
+        Console.WriteLine("Función en desarrollo.");
         Console.ReadKey();
     }
 }

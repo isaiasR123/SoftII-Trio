@@ -1,3 +1,4 @@
+namespace BiblioBack.Dominio;
 public class Laboratorio
 {
     public string Nombre { get; set; }
