@@ -1,24 +1,12 @@
-using MySql.Data.MySqlClient;
-using proyecto;
-
-namespace BiblioBack.Data;
-
 public class LaboratorioRepositorio
 {
-    private readonly Conexion conexion = new Conexion();
+    public void Agregar(Laboratorio laboratorio) { }
 
-    public void Guardar(Laboratorio laboratorio)
-    {
-        using MySqlConnection conn = conexion.ObtenerConexion();
+    public List<Laboratorio> ObtenerTodos() { }
 
-        string sql = @"INSERT INTO laboratorio(nombre, ubicacion)
-                       VALUES(@nombre,@ubicacion)";
+    public Laboratorio? BuscarPorId(int id) { }
 
-        MySqlCommand cmd = new MySqlCommand(sql, conn);
+    public void Actualizar(Laboratorio laboratorio) { }
 
-        cmd.Parameters.AddWithValue("@nombre", laboratorio.Nombre);
-        cmd.Parameters.AddWithValue("@ubicacion", laboratorio.Ubicacion);
-
-        cmd.ExecuteNonQuery();
-    }
+    public void Eliminar(int id) { }
 }
