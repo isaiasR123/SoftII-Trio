@@ -4,11 +4,16 @@ namespace BiblioBack.Data;
 
 public class LaboratorioRepositorio
 {
-    public void Agregar(Laboratorio laboratorio) { }
+    private List<Laboratorio> laboratorios = new();
+
+    public void Agregar(Laboratorio laboratorio)
+    {
+        laboratorios.Add(laboratorio);
+    }
 
     public List<Laboratorio> ObtenerTodos()
     {
-        return new List<Laboratorio>();
+        return laboratorios;
     }
 
     public Laboratorio? BuscarPorId(int id)
@@ -16,7 +21,11 @@ public class LaboratorioRepositorio
         return null;
     }
 
-    public void Actualizar(Laboratorio laboratorio) { }
+    public void Actualizar(Laboratorio laboratorio)
+    {
+    }
 
-    public void Eliminar(int id) { }
+    public void Eliminar(int id)
+    {
+    }
 }

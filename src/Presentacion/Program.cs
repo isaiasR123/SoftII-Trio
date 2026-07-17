@@ -2,13 +2,30 @@
 using BiblioBack.Dominio;
 
 namespace proyecto;
+
 class Program
 {
     static LaboratorioRepositorio laboratorioRepositorio = new();
     static ComputadoraRepositorio computadoraRepositorio = new();
+    static ModeloRepositorio modeloRepositorio = new();
 
     static void Main(string[] args)
     {
+        ModeloRepositorio modeloRepositorio = new ModeloRepositorio();
+
+        ModeloPc modelo = new ModeloPc(
+            1,          // IdModelo
+            "Dell",     // Marca
+            "Optiplex", // Modelo
+            5,          // Procesador (según tu clase es int)
+            16          // RAM
+        );
+
+        modeloRepositorio.Agregar(modelo);
+
+        Console.WriteLine("Modelo registrado correctamente.");
+        Console.ReadKey();
+        return;
         bool salir = false;
 
         while (!salir)
@@ -157,7 +174,31 @@ class Program
 
     static void ActualizarComputadora()
     {
-        Console.WriteLine("Función en desarrollo.");
+        Console.Write("Ingrese el código de la computadora: ");
+        string codigo = Console.ReadLine() ?? "";
+
+        Computadora? computadora = computadoraRepositorio.BuscarPorCodigo(codigo);
+
+        if (computadora == null)
+        {
+            Console.WriteLine("No se encontró la computadora.");
+            Console.ReadKey();
+            return;
+        }
+
+        Console.Write("Nueva marca: ");
+        computadora.Marca = Console.ReadLine() ?? "";
+
+        Console.Write("Nuevo modelo: ");
+        computadora.Modelo = Console.ReadLine() ?? "";
+
+        Console.Write("Nueva RAM: ");
+        int.TryParse(Console.ReadLine(), out int ram);
+        computadora.Ram = ram;
+
+        computadoraRepositorio.Actualizar(computadora);
+
+        Console.WriteLine("Computadora actualizada correctamente.");
         Console.ReadKey();
     }
 
