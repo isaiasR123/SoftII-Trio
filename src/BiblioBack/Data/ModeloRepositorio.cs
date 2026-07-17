@@ -1,5 +1,6 @@
 using MySql.Data.MySqlClient;
 using BiblioBack.Dominio;
+using Dapper;
 
 namespace BiblioBack.Data;
 
@@ -11,20 +12,13 @@ public class ModeloRepositorio
     {
         using MySqlConnection conn = conexion.ObtenerConexion();
 
-        string sql = @"INSERT INTO Modelo
-                       (idModelo, marca, modelo, procesador, ram)
-                       VALUES
-                       (@id, @marca, @modelo, @procesador, @ram)";
+        string sql = @"
+    INSERT INTO Modelo
+    (idModelo, marca, modelo, procesador, ram)
+    VALUES
+    (@IdModelo, @Marca, @Modelo, @Procesador, @Ram)";
 
-        MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-        cmd.Parameters.AddWithValue("@id", modelo.IdModelo);
-        cmd.Parameters.AddWithValue("@marca", modelo.Marca);
-        cmd.Parameters.AddWithValue("@modelo", modelo.Modelo);
-        cmd.Parameters.AddWithValue("@procesador", modelo.Procesador);
-        cmd.Parameters.AddWithValue("@ram", modelo.Ram);
-
-        cmd.ExecuteNonQuery();
+        conn.Execute(sql, modelo);
     }
 
     public List<ModeloPc> ObtenerTodos()

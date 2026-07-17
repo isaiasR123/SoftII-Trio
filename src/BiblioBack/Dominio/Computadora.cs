@@ -6,11 +6,11 @@ public class Computadora
     public int IdLaboratorio { get; set; }
     public int IdModelo { get; set; }
 
-    public string Marca { get; set; }
-    public string Modelo { get; set; }
-    public string Codigo { get; set; }
-    public string NombreEquipo { get; set; }
-    public int Ram { get; set; }
+    public string Marca { get; set; } = "";
+    public string Modelo { get; set; } = "";
+    public string Codigo { get; set; } = "";
+    public string NombreEquipo { get; set; } = "";
+    public int Ram { get; set; } = 0;
 
 
     public Computadora(
@@ -45,5 +45,9 @@ public class Computadora
         Console.WriteLine($"Modelo: {Modelo}");
         Console.WriteLine($"Código: {Codigo}");
         Console.WriteLine($"RAM: {Ram}");
+    }
+
+    public Computadora()
+    {
     }
 }

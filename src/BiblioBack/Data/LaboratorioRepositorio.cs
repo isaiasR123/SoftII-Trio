@@ -1,5 +1,6 @@
 using MySql.Data.MySqlClient;
 using BiblioBack.Dominio;
+using Dapper;
 
 namespace BiblioBack.Data;
 
@@ -17,24 +18,21 @@ public class LaboratorioRepositorio
     VALUES
     (@id, @nombre, @ubicacion)";
 
-        MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-        cmd.Parameters.AddWithValue("@id", ObtenerNuevoId());
-        cmd.Parameters.AddWithValue("@nombre", laboratorio.Nombre);
-        cmd.Parameters.AddWithValue("@ubicacion", laboratorio.Ubicacion);
-
-        cmd.ExecuteNonQuery();
+        conn.Execute(sql, new
+        {
+            id = ObtenerNuevoId(),
+            nombre = laboratorio.Nombre,
+            ubicacion = laboratorio.Ubicacion
+        });
     }
 
-    private int ObtenerNuevoId()
+    public int ObtenerNuevoId()
     {
         using MySqlConnection conn = conexion.ObtenerConexion();
 
         string sql = "SELECT IFNULL(MAX(idLaboratorio),0)+1 FROM Laboratorio";
 
-        MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-        return Convert.ToInt32(cmd.ExecuteScalar());
+        return conn.ExecuteScalar<int>(sql);
     }
 
     public List<Laboratorio> ObtenerTodos()
@@ -66,51 +64,33 @@ public class LaboratorioRepositorio
     {
         using MySqlConnection conn = conexion.ObtenerConexion();
 
-        string sql = "SELECT nombre, ubicacion FROM Laboratorio WHERE nombre = @nombre";
+        string sql = @"
+    SELECT
+        nombre AS Nombre,
+        ubicacion AS Ubicacion
+    FROM Laboratorio
+    WHERE nombre = @nombre";
 
-        MySqlCommand cmd = new MySqlCommand(sql, conn);
-        cmd.Parameters.AddWithValue("@nombre", nombre);
-
-        using MySqlDataReader reader = cmd.ExecuteReader();
-
-        if (reader.Read())
-        {
-            return new Laboratorio(
-                reader.GetString("nombre"),
-                reader.GetString("ubicacion")
-            );
-        }
-
-        return null;
+        return conn.QueryFirstOrDefault<Laboratorio>(sql, new { nombre });
     }
-
     public void Actualizar(Laboratorio laboratorio)
     {
         using MySqlConnection conn = conexion.ObtenerConexion();
 
         string sql = @"
     UPDATE Laboratorio
-    SET ubicacion = @ubicacion
-    WHERE nombre = @nombre";
+    SET ubicacion = @Ubicacion
+    WHERE nombre = @Nombre";
 
-        MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-        cmd.Parameters.AddWithValue("@ubicacion", laboratorio.Ubicacion);
-        cmd.Parameters.AddWithValue("@nombre", laboratorio.Nombre);
-
-        cmd.ExecuteNonQuery();
+        conn.Execute(sql, laboratorio);
     }
 
     public void Eliminar(int idLaboratorio)
     {
         using MySqlConnection conn = conexion.ObtenerConexion();
 
-        string sql = "DELETE FROM Laboratorio WHERE idLaboratorio = @id";
+        string sql = "DELETE FROM Laboratorio WHERE idLaboratorio = @idLaboratorio";
 
-        MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-        cmd.Parameters.AddWithValue("@id", idLaboratorio);
-
-        cmd.ExecuteNonQuery();
+        conn.Execute(sql, new { idLaboratorio });
     }
 }
