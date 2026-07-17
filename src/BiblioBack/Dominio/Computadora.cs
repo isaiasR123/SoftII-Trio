@@ -1,24 +1,49 @@
 namespace BiblioBack.Dominio;
-public class Computadora : Activo, IActivo
+
+public class Computadora
 {
-  public int Ram {get; set;}
+    public int IdComputadora { get; set; }
+    public int IdLaboratorio { get; set; }
+    public int IdModelo { get; set; }
 
-   public Computadora(string marca, string modelo, string codigo, int ram) : base(marca, modelo, codigo)
-   {
-      if (ram <= 0)
-      throw new Exception("La memoria RAM debe ser mayor que cero.");
-      
-      this.Ram = ram;
-   }
+    public string Marca { get; set; }
+    public string Modelo { get; set; }
+    public string Codigo { get; set; }
+    public string NombreEquipo { get; set; }
+    public int Ram { get; set; }
 
-  public override void MostrarInformacion (){
-    Console.WriteLine("=====COMPUTADORA=====");
-    base.MostrarInformacion();
-    Console.WriteLine($"Ram: {Ram} GB");
-  }
 
-  public bool EstaActivo()
-  {
-    return true;
-  }
+    public Computadora(
+        int idComputadora,
+        int idLaboratorio,
+        int idModelo,
+        string nombreEquipo)
+    {
+        IdComputadora = idComputadora;
+        IdLaboratorio = idLaboratorio;
+        IdModelo = idModelo;
+        NombreEquipo = nombreEquipo;
+    }
+
+
+    public Computadora(
+        string marca,
+        string modelo,
+        string codigo,
+        int ram)
+    {
+        Marca = marca;
+        Modelo = modelo;
+        Codigo = codigo;
+        Ram = ram;
+    }
+
+
+    public void MostrarInformacion()
+    {
+        Console.WriteLine($"Marca: {Marca}");
+        Console.WriteLine($"Modelo: {Modelo}");
+        Console.WriteLine($"Código: {Codigo}");
+        Console.WriteLine($"RAM: {Ram}");
+    }
 }

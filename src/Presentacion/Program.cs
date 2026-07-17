@@ -11,21 +11,6 @@ class Program
 
     static void Main(string[] args)
     {
-        ModeloRepositorio modeloRepositorio = new ModeloRepositorio();
-
-        ModeloPc modelo = new ModeloPc(
-            1,          // IdModelo
-            "Dell",     // Marca
-            "Optiplex", // Modelo
-            5,          // Procesador (según tu clase es int)
-            16          // RAM
-        );
-
-        modeloRepositorio.Agregar(modelo);
-
-        Console.WriteLine("Modelo registrado correctamente.");
-        Console.ReadKey();
-        return;
         bool salir = false;
 
         while (!salir)
@@ -112,19 +97,26 @@ class Program
 
     static void RegistrarComputadora()
     {
-        Console.Write("Marca: ");
-        string marca = Console.ReadLine() ?? "";
+        Console.Write("ID Computadora: ");
+        int id = int.Parse(Console.ReadLine()!);
 
-        Console.Write("Modelo: ");
-        string modelo = Console.ReadLine() ?? "";
+        Console.Write("ID Laboratorio: ");
+        int laboratorio = int.Parse(Console.ReadLine()!);
 
-        Console.Write("Código: ");
-        string codigo = Console.ReadLine() ?? "";
+        Console.Write("ID Modelo: ");
+        int modelo = int.Parse(Console.ReadLine()!);
 
-        Console.Write("RAM (GB): ");
-        int.TryParse(Console.ReadLine(), out int ram);
+        Console.Write("Nombre equipo: ");
+        string nombre = Console.ReadLine() ?? "";
 
-        Computadora pc = new Computadora(marca, modelo, codigo, ram);
+
+        Computadora pc = new Computadora(
+            id,
+            laboratorio,
+            modelo,
+            nombre
+        );
+
 
         computadoraRepositorio.Agregar(pc);
 
@@ -204,19 +196,39 @@ class Program
 
     static void EliminarComputadora()
     {
-        Console.WriteLine("Función en desarrollo.");
+        Console.Write("Código de computadora: ");
+        string codigo = Console.ReadLine() ?? "";
+
+        computadoraRepositorio.Eliminar(codigo);
+
+        Console.WriteLine("Computadora eliminada correctamente.");
         Console.ReadKey();
     }
 
     static void ActualizarLaboratorio()
     {
-        Console.WriteLine("Función en desarrollo.");
+        Console.Write("Nombre del laboratorio: ");
+        string nombre = Console.ReadLine() ?? "";
+
+        Console.Write("Nueva ubicación: ");
+        string ubicacion = Console.ReadLine() ?? "";
+
+        Laboratorio laboratorio = new Laboratorio(nombre, ubicacion);
+
+        laboratorioRepositorio.Actualizar(laboratorio);
+
+        Console.WriteLine("Laboratorio actualizado correctamente.");
         Console.ReadKey();
     }
 
     static void EliminarLaboratorio()
     {
-        Console.WriteLine("Función en desarrollo.");
+        Console.Write("ID del laboratorio: ");
+        int id = int.Parse(Console.ReadLine() ?? "0");
+
+        laboratorioRepositorio.Eliminar(id);
+
+        Console.WriteLine("Laboratorio eliminado correctamente.");
         Console.ReadKey();
     }
 }
